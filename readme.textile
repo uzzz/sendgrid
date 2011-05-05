@@ -1,0 +1,26 @@
+h1. Description
+
+A gem for adding sendgrid support in rails 3 malers. Works *ONLY* with rails 3, and supports only
+sendgrid categories for now (that's only one feature I need for now).
+
+h1. Installation
+
+Add
+<code>gem 'sendgrid', :git => 'git://github.com/uzzz/sendgrid.git'</code>
+to your Gemfile
+
+h1. Usage
+
+<pre><code>
+class UserMailer < ActionMailer::Base
+  # enable sendgrid support
+  sendgrid
+
+  def confirmation(user)
+    mail(:to => user.email,
+         :from => 'noreply@example.com',
+         :subject => 'Email confirmation',
+         :sg_category => 'registration') # set sendgrid category
+  end
+end
+</code></pre>
