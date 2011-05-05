@@ -1,3 +1,5 @@
+require 'json'
+
 module Sendgrid
   module Base
     def self.included(klass)
@@ -13,7 +15,21 @@ module Sendgrid
 
     module InstanceMethods
       def mail_with_sendgrid(headers = {}, &block)
+        headers['X-SMTPAPI'] = sendgrid_json_headers(headers)
+
         mail_without_sendgrid(headers, &block)
+      end
+
+      private
+
+      def sendgrid_json_headers(headers = {})
+        sg_opts = {}
+
+        if category = headers.delete(:sg_category)
+          sg_opts[:category] = category
+        end
+
+        sg_opts.to_json.gsub(/(["\]}])([,:])(["\[{])/, '\\1\\2 \\3')
       end
     end
   end
