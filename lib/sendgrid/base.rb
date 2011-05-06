@@ -3,12 +3,13 @@ require 'json'
 module Sendgrid
   module Base
     def self.included(klass)
-      klass.send(:include, InstanceMethods)
       klass.extend ClassMethods
     end
 
     module ClassMethods
       def sendgrid
+        include InstanceMethods
+
         alias_method_chain :mail, :sendgrid
       end
     end
