@@ -12,6 +12,6 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Sendgrid support for rails}
   gem.email = "uzzable@gmail.com"
   gem.homepage = "https://github.com/uzzz/sendgrid"
-  gem.authors = ["Max Gilinsky"]
+  gem.authors = ["Max Zhylinski"]
   gem.version = Sendgrid::Version::STRING
 end
